@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('training_data.csv')
+df = pd.read_csv('test_data.csv') #connects the csv file, defined to the code as df
 for index, row in df.iterrows():
     RiskScore = 100
     if row["Housing"] == "own":
@@ -112,6 +112,8 @@ for index, row in df.iterrows():
     else:
         print("Error at Duration amount")
 
-    df.loc[index,"CalcRisk"] = RiskScore
-
+    if RiskScore >=101.875279:
+        df.loc[index,"CalcRisk"] = "good"
+    elif RiskScore < 101.875279:
+        df.loc[index,"CalcRisk"] = "bad"
 df.to_csv('data.csv', index=False)
