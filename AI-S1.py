@@ -1,7 +1,7 @@
 import pandas as pd
 
 df = pd.read_csv('test_data.csv') #connects the csv file, defined to the code as df
-for index, row in df.iterrows():
+for index, row in df.iterrows(): #for loop, iterates row by row, calculating the RiskValue using the rows factor values
     RiskScore = 100
     if row["Housing"] == "own":
         RiskScore = RiskScore*1.125984252
@@ -112,8 +112,8 @@ for index, row in df.iterrows():
     else:
         print("Error at Duration amount")
 
-    if RiskScore >=101.875279:
-        df.loc[index,"CalcRisk"] = "good"
+    if RiskScore >=101.875279: #Defines the threshold value    
+        df.loc[index,"CalcRisk"] = "good" #assigns a positive result
     elif RiskScore < 101.875279:
-        df.loc[index,"CalcRisk"] = "bad"
-df.to_csv('data.csv', index=False)
+        df.loc[index,"CalcRisk"] = "bad" #assigns a negative result
+df.to_csv('data.csv', index=False) #saves results to csv file "data"
